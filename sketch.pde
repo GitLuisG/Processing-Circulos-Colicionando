@@ -1,72 +1,65 @@
-import java.util.*;
-
-Circulo c1, c2, c3,tmp;
-List <Circulo> list;
-
-
-int r=0;
-int k = 31;
+ import java.util.List;
+Circulo c1, c2, c3, tmp;
+List <Circulo>lista; // <> Operador Diamante
+String q="";
 float x,y;
-int w = 0;
-int n =0;
-
-String q = "";
-
-int id;
-
-
+int n=-1; // para el id del circulo
+int k = 31; // numero de circulos en la lista
+int w =0;
 void setup(){
-  fullScreen();
-  list = new <Circulo> ArrayList();
-  tmp = null;
-  for(int i = 0; i < k; i++){
-    x=random(width);
-    y=random(height);
-    tmp = new Circulo(x, y, 50, w);
-    w++;
-    list.add(tmp);
-  }
-  
+   fullScreen();
+    lista = new <Circulo>ArrayList();
+    tmp = null;
+    for(int i=0; i <k ;i++){
+       x = random(width);
+       y = random(height);
+       tmp = new Circulo(x,y,50,w);
+       w++;
+       lista.add(tmp);
+    }
 }
 
-//list.size()
+void draw(){
+   background(0);
+   for(int i=0; i < lista.size() ;i++){
+       tmp = lista.get(i);
+       if(i == lista.size()-1){
+          tmp.SetColor(100,255,100);
+        }
+       tmp.dibuja();
+   }
+}
+
+void mouseDragged(){
+  if(ban){      
+    tmp.x = mouseX - dx;
+    tmp.y = mouseY - dy;
+  }    
+}
+
+void mousePressed(){
+  q="";
+   for(int i=lista.size()-1; i>=0  ;i--){
+     tmp = lista.get(i);
+     ban = tmp.isAdentro(mouseX,mouseY);
+     if (ban) {
+       n = tmp.id;
+       q += tmp.id;
+       tmp.mover=true;
+       break;
+     }else{
+       tmp.mover=false;
+     }
+   }
+   
+}
+
 boolean ban;
-  
-  void draw(){      
-        background(0);
-      
-      for(int i = 0; i<list.size();i++){
-       
-        tmp = list.get(i);
-            if(i == list.size()-1){
-              tmp.setColor(100,255,100);
-            }
-        tmp.dibuja();
-        id=tmp.idReturn();
-      } 
-  }
-  
 float dx,dy;
 
-  void mouseDragged(){
-    tmp=list.get(id);
-    if(tmp.mover){
-      if(ban){
-      
-      tmp.x = mouseX - dx;
-      tmp.y = mouseY - dy;
-      }
-    }
-  }
-  
-  void mousePressed(){
-    tmp=list.get(id);
-    dx=mouseX-tmp.x;
-    dy=mouseY-tmp.y;
-    ban = tmp.isAdentro(mouseX,mouseY);
-    if(ban){
-      tmp.mover = true;
-    }else{
-      tmp.mover = false;
-    }
-  }
+void mouseReleased(){
+   q = "";
+   n = -1; // no se está seleccionando nigún círculo.
+   tmp.mover = false;
+   tmp = null;
+}

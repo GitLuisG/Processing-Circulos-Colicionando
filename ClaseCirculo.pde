@@ -29,22 +29,23 @@ class Circulo{
 
   boolean isAdentro(float a, float b){
     if(dist(x,y,a,b) > diametro){
-    return false;
+        return false;
     }
     else{
-    return true;
+        return true;
     }
   }
   
-  int idReturn(){
+  int GetId(){
    return id;
   }
   
-  void setColor(int elcolor, int elcolor2, int elcolor3){
+  void SetColor(int elcolor, int elcolor2, int elcolor3){
    acolor1 = elcolor;
    acolor2 = elcolor2;
    acolor3 = elcolor3;
    
   }
+  
 
 }
