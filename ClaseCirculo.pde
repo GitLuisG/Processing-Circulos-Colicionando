@@ -28,7 +28,7 @@ class Circulo{
   }
 
   boolean isAdentro(float a, float b){
-    if(dist(x,y,a,b) > diametro){
+    if(dist(x,y,a,b) > diametro/2){
         return false;
     }
     else{
