@@ -7,7 +7,7 @@ int n=-1; // para el id del circulo
 int k = 31; // numero de circulos en la lista
 int w =0;
 void setup(){
-   size(1000,500);
+    fullScreen();
     lista = new <Circulo>ArrayList();
     tmp = null;
     for(int i=0; i <k ;i++){
