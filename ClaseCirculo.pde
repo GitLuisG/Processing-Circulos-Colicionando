@@ -7,10 +7,12 @@ class Circulo{
   int acolor2 = 255;
   int acolor3 = 255;
   float radio;
+  float velocidad;
   
   boolean mover;
 
   Circulo(float a, float b, float c, int d){
+    velocidad = random(5);
     x = a;
     y = b;
     diametro = c;
@@ -36,10 +38,16 @@ class Circulo{
     }
   }
   
-  int GetId(){
-   return id;
+boolean colision(float a, float b){
+  if(diametro>=dist(x,y,a,b)){
+    
+  return true;
+  } else{
+    return false;
   }
-  
+
+}
+ 
   void SetColor(int elcolor, int elcolor2, int elcolor3){
    acolor1 = elcolor;
    acolor2 = elcolor2;
